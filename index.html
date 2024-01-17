@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jeu - Deviner un Nombre</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            // Génération d'un nombre aléatoire entre 10 et 100 inclus
+        const nombreADeviner = Math.floor(Math.random() * 91) + 10;
+
+        // Initialisation du nombre d'essais et du nombre de coups
+        let essaisRestants = 10;
+        let nombreDeCoups = 0;
+
+        // Fonction principale du jeu
+        function devinerNombre() {
+            // Demander à l'utilisateur de saisir un nombre
+            const proposition = prompt("Devinez un nombre entre 10 et 100 :");
+
+            // Vérifier si l'utilisateur a annulé la saisie
+            if (proposition === null) {
+                alert("Jeu annulé. Le nombre à deviner était : " + nombreADeviner);
+            } else {
+                // Convertir la proposition en nombre entier
+                const propositionNombre = parseInt(proposition);
+
+
+            // Vérifier si le nombre est correct
+            if (propositionNombre === nombreADeviner) {
+                alert("Bravo ! Vous avez deviné le nombre en " + nombreDeCoups + " coups.");
+            } else {
+                essaisRestants--;
+
+                // Afficher une indication
+                const indication = propositionNombre < nombreADeviner ? "plus grand" : "plus petit";
+                alert("Désolé, le nombre est " + indication + ". Il vous reste " + essaisRestants + " essais.");
+                
+                // Vérifier si le nombre d'essais restants est épuisé
+                if (essaisRestants === 0) {
+                    alert("Désolé, vous avez épuisé tous vos essais. Le nombre à deviner était : " + nombreADeviner);
+                } else {
+                    // Appeler la fonction récursivement pour la prochaine proposition
+                    devinerNombre();
+                }
+            }
+
+    }
+}
+        // Lancer le jeu en appelant la fonction principale
+        devinerNombre();
+                    
+        </script>
+    </body>
+</html>
